@@ -44,9 +44,20 @@ public class Zamowienie {
 //            mappedBy = "Zamowienie")
 //    private Set<Produkt> produkty = new HashSet<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "zamowienie_id") // we need to duplicate the physical information
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "zam") // we need to duplicate the physical information
     private Set<Zamprod> zamowione;
+	
+	public Set<Zamprod> getChildren() {
+		return zamowione;
+	}
+	public void setChildren(Set<Zamprod> aSet) {
+	    //this.sonEntities = aSet; //This will override the set that Hibernate is tracking.
+	    this.zamowione.clear();
+	    if (aSet != null) {
+	        this.zamowione.addAll(aSet);
+	    }
+	}
 	
 	public Zamowienie(Long id, String datazam, Boolean wynos) {
 		super();
@@ -94,6 +105,19 @@ public class Zamowienie {
 
 	public Zamowienie() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public Zamowienie(String datazam, Boolean wynos) {
+		super();
+		this.datazam = datazam;
+		this.wynos = wynos;
+	}
+
+
+	public void update(Zamowienie nowy) {
+		this.datazam = nowy.getdatazam();
+		this.wynos = nowy.getWynos();
 	}
 	
 	

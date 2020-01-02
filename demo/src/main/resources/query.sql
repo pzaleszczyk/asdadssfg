@@ -5,13 +5,13 @@ ALTER TABLE zamprod ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE zamowienie ALTER COLUMN id RESTART WITH 1;
 ALTER TABLE produkt ALTER COLUMN id RESTART WITH 1;
 
-insert into zamowienie(datazam, wynos) values (2003-12-12, true)
-insert into zamowienie(datazam, wynos) values (2000-12-22, true)
-insert into zamowienie(datazam, wynos) values (2002-12-30, true)
-insert into zamowienie(datazam, wynos) values (2003-10-16, FALSE)
-insert into zamowienie(datazam, wynos) values (2012-08-12, FALSE)
-insert into zamowienie(datazam, wynos) values (2002-04-02, FALSE)
-;
+insert into zamowienie(datazam, wynos) values ('2003-12-12', true)
+insert into zamowienie(datazam, wynos) values ('2000-12-22', true)
+insert into zamowienie(datazam, wynos) values ('2002-12-30', true)
+insert into zamowienie(datazam, wynos) values ('2003-10-16', FALSE)
+insert into zamowienie(datazam, wynos) values ('2012-08-12', FALSE)
+insert into zamowienie(datazam, wynos) values ('2002-04-02', FALSE)
+
 insert into PRODUKT(CENA,NAZWA,VEGE) VALUES(15.0,'KEBAB MIESNY',FALSE)
 insert into PRODUKT(CENA,NAZWA,VEGE) VALUES(12.2,'KEBAB MALY',FALSE)
 insert into PRODUKT(CENA,NAZWA,VEGE) VALUES(17.5,'KEBAB DUZY',FALSE)

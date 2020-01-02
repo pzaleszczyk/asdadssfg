@@ -29,10 +29,10 @@ public interface ProduktService{
 	List<Produkt> findAllVege();
 	// @Query with parameter
 	List<Produkt> findAllProdukts(Sort sort);
-	List<Produkt> findByNazwaContaining	(String nazwa);
+	//List<Produkt> findByNazwaContaining	(String nazwa);
 	// Query methods (1)
 	List<Produkt> findByCenaGreaterThanEqualAndVegeIs (double cena, boolean vege);
-	List<Produkt> findByNazwaContainingAndVegeFalseAndCenaNotNull(String nazwa);
+	List<Produkt> findByNazwaContainingAndVegeIsFalseAndCenaNotNull(String nazwa);
 	
 	
 }

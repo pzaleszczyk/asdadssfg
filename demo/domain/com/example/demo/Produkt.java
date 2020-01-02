@@ -46,9 +46,20 @@ public class Produkt {
 //            mappedBy = "Produkt")
 //    private Set<Zamowienie> zamowienia = new HashSet<>();
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "produkt_id") // we need to duplicate the physical information
+    @JoinColumn(name = "prod") // we need to duplicate the physical information
     private Set<Zamprod> zamowione;
 
+	public Set<Zamprod> getChildren() {
+		return zamowione;
+	}
+	public void setChildren(Set<Zamprod> aSet) {
+	    //this.sonEntities = aSet; //This will override the set that Hibernate is tracking.
+	    this.zamowione.clear();
+	    if (aSet != null) {
+	        this.zamowione.addAll(aSet);
+	    }
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,6 +108,11 @@ public class Produkt {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void update(Produkt nowy) {
+		this.nazwa = nowy.getNazwa();
+		this.cena = nowy.getCena();
+		this.vege = nowy.getVege();
+	}
 	
 	
 }

@@ -16,13 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public interface ZamProdService{
 
-	public Zamprod findByZId(Long id);
-	public Zamprod findByPId(Long id);
-	public void delete(Long id);
+	//public Zamprod findByZId(Long id);
+	//public Zamprod findByPId(Long id);
+	public void delete(long l);
 	public List<Zamprod> findAll();
 	public Zamprod save(Zamprod zamprod);
-
-
+	public Zamprod update(long l,Zamprod zamprod);
+	
+	public List<Zamprod> findByZId(Zamowienie a,int pageSize);
+	public List<Zamprod> findByPId(Produkt a,int pageSize);
+	
 	List<IloscProduktow> getIloscZamowionychProduktow();
 	List<Rachunek> getRachunek();
 	

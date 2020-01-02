@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,31 @@ public class ZamProdServiceImpl implements ZamProdService{
 	private ZamProdRepository repository;
 
 
-    
+	
 	@Transactional
-	public Zamprod findByPId(Long id) {
-		//TO DO
-		return repository.findById(id).get();
+	public List<Zamprod> findByZId(Zamowienie a, int pageSize) {
+		
+		TypedQuery<Zamprod> query = em.createQuery(
+				" select zp from Zamprod zp " + 
+				" where zp.zam = ?1",Zamprod.class);
+
+		query.setParameter(1, a);
+		query.setMaxResults(pageSize);
+
+		return query.getResultList();
 	}
 	
 	@Transactional
-	public Zamprod findByZId(Long id) {
-		//TO DO
-		return repository.findById(id).get();
+	public List<Zamprod> findByPId(Produkt a, int pageSize) {
+		
+		TypedQuery<Zamprod> query = em.createQuery(
+				" select zp from Zamprod zp " + 
+				" where zp.prod = ?1",Zamprod.class);
+
+		query.setParameter(1, a);
+		query.setMaxResults(pageSize);
+
+		return query.getResultList();
 	}
 
 	@Transactional
@@ -44,27 +59,15 @@ public class ZamProdServiceImpl implements ZamProdService{
 		return repository.findAll();
 	}
 	@Transactional
-	public void delete(Long id) {
+	public void delete(long id) {
 		repository.deleteById(id);
 		
 	}
 
 	@Transactional
 	public Zamprod save(Zamprod zam) {
-		em.flush();
 		return repository.save(zam);
 		
-	}
-
-	public List<Produkt> findByLastname(String lastname, int page, int pageSize) {
-
-		TypedQuery query = em.createQuery("select c from Produkt c where c.lastname = ?1", Produkt.class);
-
-		query.setParameter(1, lastname);
-		query.setFirstResult(page * pageSize);
-		query.setMaxResults(pageSize);
-
-		return query.getResultList();
 	}
 
 	@Override
@@ -78,4 +81,11 @@ public class ZamProdServiceImpl implements ZamProdService{
 
 		return repository.getRachunek();
 	}
+
+	@Transactional
+	public Zamprod update(long id, Zamprod zamprod) {
+		zamprod.setId(id);
+		return repository.save(zamprod);
+	}
+
 }

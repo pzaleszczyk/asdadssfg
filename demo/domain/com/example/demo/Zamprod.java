@@ -20,7 +20,7 @@ public class Zamprod {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-	int id;
+	long id;
 
 	//	@ManyToOne(fetch = FetchType.LAZY)
 	//	@JoinColumn(name = "prod", nullable = false)
@@ -80,6 +80,15 @@ public class Zamprod {
 	public Zamprod() {
 		super();
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 
 
 

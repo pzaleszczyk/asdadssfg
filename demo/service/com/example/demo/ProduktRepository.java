@@ -19,7 +19,7 @@ public interface ProduktRepository extends JpaRepository<Produkt, Long>{
 	//(1) Query methods
 	List<Produkt> findByNazwaContaining	(String nazwa);
 	List<Produkt> findByCenaGreaterThanEqualAndVegeIs (double cena, boolean vege);
-	List<Produkt> findByNazwaContainingAndVegeFalseAndCenaNotNull(String nazwa);
+	List<Produkt> findByNazwaContainingAndVegeIsFalseAndCenaNotNull(String nazwa);
 	
 	
 	//(1) Named query without parameter

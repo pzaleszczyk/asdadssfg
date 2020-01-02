@@ -45,6 +45,7 @@ public class ZamowienieServiceImpl implements ZamowienieService{
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Zamowienie> findAllAfterDate(String datazam) {
 	      return (Collection<Zamowienie>) em.createNamedQuery("findAllAfterDate")
@@ -71,8 +72,10 @@ public class ZamowienieServiceImpl implements ZamowienieService{
 
 	@Override
 	public Zamowienie update(Long id, Zamowienie zam) {
-		zam.setId(id);
-		return repository.save(zam);
+		Zamowienie current = repository.findById(id).get();
+		current.setdatazam(zam.getdatazam());
+		current.setWynos(zam.getWynos());
+		return repository.save(current);
 	}
 
 	@Override
@@ -95,7 +98,6 @@ public class ZamowienieServiceImpl implements ZamowienieService{
 
 	@Override
 	public List<Zamowienie> findByDatazamAfterAndDatazamBeforeOrderByDatazamAsc(String start, String end) {
-		// TODO Auto-generated method stub
 		return repository.findByDatazamAfterAndDatazamBeforeOrderByDatazamAsc(start, end);
 	}
 }

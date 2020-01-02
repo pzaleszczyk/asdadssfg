@@ -49,9 +49,13 @@ public class ProduktServiceImpl implements ProduktService{
 	//(cr-U-d)
 	@Transactional
 	public Produkt update(Long id,Produkt Produkt) {
-		Produkt.setId(id);
-		return repository.save(Produkt);
+		Produkt current = repository.findById(id).get();
+		current.setNazwa(Produkt.getNazwa());
+		current.setVege(Produkt.getVege());
+		current.setCena(Produkt.getCena());
+		return repository.save(current);
 	}
+
 	//(cru-D-)
 	@Transactional
 	public void delete(long ID) {
@@ -87,10 +91,10 @@ public class ProduktServiceImpl implements ProduktService{
 		return repository.findAllProdukts(sort);
 	}
 
-	@Override
-	public List<Produkt> findByNazwaContaining(String nazwa) {
-		return repository.findByNazwaContaining(nazwa);
-	}
+//	@Override
+//	public List<Produkt> findByNazwaContaining(String nazwa) {
+//		return repository.findByNazwaContaining(nazwa);
+//	}
 
 	@Override
 	public List<Produkt> findByCenaGreaterThanEqualAndVegeIs (double cena, boolean vege){
@@ -98,8 +102,8 @@ public class ProduktServiceImpl implements ProduktService{
 	}
 
 	@Override
-	public List<Produkt> findByNazwaContainingAndVegeFalseAndCenaNotNull(String nazwa) {
+	public List<Produkt> findByNazwaContainingAndVegeIsFalseAndCenaNotNull(String nazwa) {
 		
-		return repository.findByNazwaContainingAndVegeFalseAndCenaNotNull(nazwa);
+		return repository.findByNazwaContainingAndVegeIsFalseAndCenaNotNull(nazwa);
 	}
 }

@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ZamProdRepository extends JpaRepository<Zamprod, Long>{
 
-	//Query methods x2
+
 //	List<Produkt> findByNazwaContaining	(String nazwa);
-//	List<Produkt> findByCenaGreaterThanEqualAndVegeIs (double cena, boolean vege);
+//	List<Zamprod> findByIloscGreaterThanEqual (double cena, boolean vege);
 	
 	//@Query x2
 	//Rachunek dla zamowienia.
